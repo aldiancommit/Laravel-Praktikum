@@ -24,6 +24,11 @@ class MajorsSeeder extends Seeder
                 'code' => '00002',
                 'description' => 'lorem ipsum dolor sit amet consectetur adipiscing elit',
             ],
+            [
+                'name' => 'S1 Teknik Elektro',
+                'code' => '00003',
+                'description' => 'lorem ipsum dolor sit amet consectetur adipiscing elit',
+            ],
         ]);
     }
 }

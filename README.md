@@ -47,7 +47,8 @@ php artisan migrate --seed
 ### 7. Jalankan Server Lokal
 ```bash
 php artisan serve
-Buka di browser: http://127.0.0.1:8000
+
+**Buka di browser: http://127.0.0.1:8000**
 ```
 
 ### 📂 Struktur Utama Proyek

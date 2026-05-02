@@ -4,13 +4,15 @@
         {{ session('success') }}
     </div>
     @endif
-    <div class="flex">
-        <a href="{{ route('students.create') }}"
-            class="ml-auto bg-green-50 border border-green-500 text-green-500 px-3 py-2 flex items-center gap-2 ">
-            <i class="ph ph-plus block text-green-500"></i>
-            <div>Add Student</div>
-        </a>
-    </div>
+    @can('store-student')        
+        <div class="flex">
+            <a href="{{ route('students.create') }}"
+                class="ml-auto bg-green-50 border border-green-500 text-green-500 px-3 py-2 flex items-center gap-2 ">
+                <i class="ph ph-plus block text-green-500"></i>
+                <div>Add Student</div>
+            </a>
+        </div>
+    @endcan
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white shadow">
             <thead>
@@ -38,18 +40,22 @@
                                 class="bg-blue-50 border border-blue-500 p-2 inline-block">
                                 <i class="ph ph-eye block text-blue-500"></i>
                             </a>
-                            <a href="{{ route('students.edit', $student->id) }}"
-                                class="bg-yellow-50 border border-yellow-500 p-2 inline-block">
-                                <i class="ph ph-note-pencil block text-yellow-500"></i>
-                            </a>
-                            <form onsubmit="return confirm('Are you sure?')" method="POST"
-                                action="{{ route('students.destroy', $student->id) }}">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="bg-red-50 border border-red-500 p-2">
-                                    <i class="ph ph-trash-simple block text-red-500"></i>
-                                </button>
-                            </form>
+                            @can('edit-student')                                
+                                <a href="{{ route('students.edit', $student->id) }}"
+                                    class="bg-yellow-50 border border-yellow-500 p-2 inline-block">
+                                    <i class="ph ph-note-pencil block text-yellow-500"></i>
+                                </a>
+                            @endcan
+                            @can('destroy-student')                                
+                                <form onsubmit="return confirm('Are you sure?')" method="POST"
+                                    action="{{ route('students.destroy', $student->id) }}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="bg-red-50 border border-red-500 p-2">
+                                        <i class="ph ph-trash-simple block text-red-500"></i>
+                                    </button>
+                                </form>
+                            @endcan
                         </td>
                     </tr>
                 @empty

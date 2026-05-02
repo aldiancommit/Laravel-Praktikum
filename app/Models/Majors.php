@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Majors extends Model
 {
-    public function students(): HasMany
+    public function students()
     {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(Student::class, 'major_id');
     }
 
     protected $fillable = [
